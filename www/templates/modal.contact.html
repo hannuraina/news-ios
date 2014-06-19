@@ -1,0 +1,42 @@
+<div class="modal" ng-controller="SettingsController as settingsCtrl">
+  <ion-header-bar class="bar-positive">
+    <h1 class="title"></h1>
+    <button class="button button-clear button-primary"
+      ng-click="settingsCtrl.Modal.contactModal.hide();">Cancel</button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text"
+          ng-model="settingsCtrl.contactFormName"
+          placeholder="Your Name">
+      </label>
+      <label class="item item-input">
+        <input type="text"
+          ng-model="settingsCtrl.contactFormCompany"
+          placeholder="Your Company">
+      </label>
+      <label class="item item-input">
+        <input type="text"
+          ng-model="settingsCtrl.contactFormEmail"
+          ng-disabled="settingsCtrl.contactFormEmail"
+          placeholder="Your Email">
+      </label>
+      <label class="item item-input">
+        <textarea rows="5"
+          ng-model="settingsCtrl.contactFormMessage"
+          placeholder="Message"></textarea>
+      </label>
+      <div class="padding">
+        If your message requires a response, please allow us 1-2 business days to reply. Name and email are required.
+      </div>
+    </div>
+    <label class="padding">
+      <div class="button-bar padding">
+        <a class="button button-positive" ng-click="settingsCtrl.submitContactForm()">Submit
+          <i ng-show="settingsCtrl.submitting" class="icon ion-refreshing"></i>
+        </a>
+      </div>
+    </label>
+  </ion-content>
+</div>

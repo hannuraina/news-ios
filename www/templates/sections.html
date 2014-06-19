@@ -1,0 +1,21 @@
+<ion-view title="{{listCtrl.title}}">
+  <ion-nav-bar class="bar bar-header bar-dark">
+  </ion-nav-bar>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="appCtrl.toggleLeft()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-show="!appCtrl.online" class="item-divider offline-text">
+      P&I News is currently offline
+    </div>
+    <ion-list ng-if="listCtrl.items.length">
+      <ion-item
+        ng-repeat="section in listCtrl.items"
+        ui-sref="main.tabs.sections.list({section: section.name})">
+        {{section.name}}
+      </ion-item>
+    </ion-list>
+    <button ng-if="!appCtrl.online && !listCtrl.items.length"
+      class="button button-block button-light button-offline">Unable to connect. Please try again later</button>
+  </ion-content>
+</ion-view>

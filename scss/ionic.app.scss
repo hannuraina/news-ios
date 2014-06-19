@@ -1,0 +1,211 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #4a87ee !default;
+$calm:                            #43cee6 !default;
+$balanced:                        #66cc33 !default;
+$energized:                       #f0b840 !default;
+$assertive:                       #ef4e3a !default;
+$royal:                           #8a6de9 !default;
+$dark:                            #444 !default;
+*/
+
+$pi-light:  #999999 !default;
+$pi-dark:   #555555 !default;
+$pi-green:  #334b36 !default;
+$pi-orange: #E04d32 !default;
+$pi-white:  #FFFFFF !default;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/release/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+// article styles
+.article {
+  margin: 10px auto auto auto !important;
+  line-height: 22px !important;
+  color: $pi-dark;
+  a {
+    text-decoration: none !important;
+    font-weight: bold !important;
+    color: $pi-green !important;
+  }
+  &.article-title {
+    font-size: 16px !important;
+    font-weight: bold !important;
+  }
+  &.article-byline {
+    span {
+      color: $pi-green !important;
+      font-weight: bold !important;
+    }
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+  }
+  &.article-published {
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    line-height: 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 20px !important;
+  }
+  &.article-content {
+    .img-container.thumbnail {
+      float: right !important;
+      width: 100px !important;
+      margin: 0 0 10px 10px !important;
+      img {
+        width: 100px;
+      }
+      .caption {
+        font-style: oblique !important;
+        font-size: 12px !important;
+      }
+    }
+    .img-container.widescreen {
+      margin: 0 0 35px 0 !important;
+      img {
+        width: 100% !important;
+      }
+      .caption {
+        float: right !important;
+        font-style: oblique !important;
+        font-size: 12px !important;
+      }
+    }
+  }
+  &.article-ending {
+    font-size: 12px !important;
+    font-weight: bold !important;
+  }
+  &.article-offline {
+    .img-container {
+      display: none !important;
+    }
+  }
+  h3 {
+    color: $pi-dark;
+    font-size: 16px !important;
+    font-weight: bold !important;
+  }
+}
+.button {
+  &.button-positive {
+    background-color: $pi-orange !important;
+    border-color: $pi-orange !important;
+  }
+  &.button-offline {
+    margin-top: 55% !important;
+    text-align: center;
+    color: $pi-light !important;
+  }
+}
+.bar {
+  &.bar-dark {
+    background-color: $pi-green;
+  }
+  &.bar-footer {
+    min-height: 55px;
+  }
+  &.bar-positive {
+    background-color: $pi-green !important;
+  }
+}
+.ad {
+  &.ad-wrapper {
+    background-color: #000;
+  }
+  &.ad-banner {
+    width: 100%;
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+.list {
+  color: $pi-dark;
+  h2 {
+    color: $pi-dark;
+    font-size: 14px !important;
+    font-weight: bold !important;
+  }
+  h3 {
+    color: $pi-dark;
+    font-size: 16px !important;
+    font-weight: bold !important;
+  }
+  &.list-menu {
+    .icon {
+      color: $pi-green;
+    }
+  }
+  &.list-settings {
+    .icon {
+      font-size: 14px !important;
+      color: $pi-light !important;
+    }
+  }
+  .item {
+    width: 100% !important;
+    left: 0;
+    right: 0;
+  }
+  .list-title {
+    width: 100% !important;
+  }
+  .list-summary strong {
+    font-weight: normal !important;
+  }
+  .list-byline {
+    color: $pi-green !important;
+    font-weight: normal !important;
+    margin: -7px 0 0 !important;
+  }
+  .item-thumbnail-left.item-article {
+    padding-left: 95px !important;
+    min-height: 80px !important;
+    &>img:first-child {
+      top: 15px !important;
+    }
+  }
+  .scroll-refresher.active {
+    color: $pi-green !important;
+    font-weight: normal !important;
+  }
+}
+// bug fix for dynamic sliderbox
+.slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left:0;
+  right: 0;
+}
+// fix article cut-off on pages with banner ad
+.has-footer {
+  bottom: 54px !important;
+}
+.offline-text {
+  font-size: 12px !important;
+  text-align: center !important;
+  background-color: $pi-orange !important;
+  color: $pi-white !important;
+  height: 15px !important;
+  padding: 5px !important;
+  font-weight: normal !important;
+}
+.refresh-text {
+  color: $pi-green !important;
+  font-weight: normal !important;
+  span {
+    padding: 0 5px !important;
+  }
+}

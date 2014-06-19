@@ -1,0 +1,22 @@
+{
+  "name": "pi-news-android",
+  "version": "0.0.1",
+  "authors": [
+    "James McClure <jmcclure@pionline.com>"
+  ],
+  "description": "P&I News Reader",
+  "main": "index.html",
+  "license": "none",
+  "homepage": "http://pionline.com/mobile",
+  "private": true,
+  "dependencies": {
+    "ngstorage": "~0.3.0",
+    "ionic": "driftyco/ionic#master",
+    "fontawesome": "~4.1.0",
+    "angular-bindonce": "~0.3.1",
+    "ngCordova": "~0.1.2-alpha"
+  },
+  "resolutions": {
+    "angular": "~1.2.17"
+  }
+}

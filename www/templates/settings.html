@@ -1,0 +1,52 @@
+<ion-view title="Settings">
+  <ion-nav-bar class="bar bar-header bar-dark">
+    <ion-nav-back-button class="button-icon button-clear ion-arrow-left-a"></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="appCtrl.toggleLeft()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-show="!appCtrl.online" class="item-divider offline-text">
+      P&I News is currently offline
+    </div>
+    <div class="padding">
+      <div class="list list-inset" ng-controller="UserController as userCtrl">
+        <h3>Account</h3>
+        <label class="item item-input" ng-show="userCtrl.User.user.userId">
+          <input type="text"
+            value="{{userCtrl.User.user.email}}"
+            ng-disabled="userCtrl.User.user.userId">
+        </label>
+        <label class="item padding">
+          <div class="button-bar">
+            <a class="button button-assertive"
+              ng-disabled="!appCtrl.online"
+              ng-show="userCtrl.User.user.userId"
+              ng-click="userCtrl.logout()">
+              Logout
+              <span ng-if="userCtrl.loggingout">
+                <i class="fa fa-spin fa-circle-o-notch"></i>
+              </span>
+            </a>
+            <a ng-show="!userCtrl.User.user.userId"
+              class="button button-positive"
+              ng-click="userCtrl.Modal.loginModal.show()">Login</a>
+          </div>
+        </label>
+      </div>
+
+      <div class="list list-inset list-settings" ng-show="appCtrl.online">
+        <h3>Support</h3>
+        <a class="item item-icon-right" ng-click="settingsCtrl.Modal.contactModal.show()"><i class="icon ion-chevron-right"></i>
+        Contact Us</a>
+      </div>
+
+      <div class="list list-inset list-settings">
+        <h3>About</h3>
+        <a class="item item-icon-right" ui-sref=".privacy"><i class="icon ion-chevron-right"></i> Privacy Policy</a>
+        <a class="item item-icon-right" ui-sref=".terms"><i class="icon ion-chevron-right"></i>Terms & Conditions</a>
+        <a class="item item-icon-right" ui-sref=".about"><i class="icon ion-chevron-right"></i>About Us</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

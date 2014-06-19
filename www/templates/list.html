@@ -1,0 +1,104 @@
+<ion-view title="{{listCtrl.title}}">
+  <ion-nav-bar class="bar bar-header bar-dark"></ion-nav-bar>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="appCtrl.toggleLeft()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-if="appCtrl.online && appCtrl.$state.current.name === 'main.tabs.latest'">
+      <ion-refresher
+        on-refresh="articleCtrl.refresh()"
+        pulling-text="Release to refresh..."
+        pulling-icon="fa fa-sort-desc"
+        refreshing-icon=""
+        refreshing-text=""
+        ng-show="appCtrl.online">
+      </ion-refresher>
+    </div>
+
+    <div ng-show="!appCtrl.online" class="item-divider offline-text">
+      P&I News is currently offline
+    </div>
+
+    <div ng-if="appCtrl.online">
+      <div ng-show="articleCtrl.refreshing || appCtrl.refreshing"
+        animation="slide-up-down"
+        class="item item-divider refresh-text">
+        <i class="fa fa-spin fa-circle-o-notch"></i>
+        <span>Updating...</span>
+      </div>
+      <div ng-if="!listCtrl.items.length">
+        <button ng-if="appCtrl.$state.current.name  !== 'main.tabs.saved'"
+          class="button button-block button-light button-offline">
+            Unable to connect. Please try again later
+        </button>
+      </div>
+      <div ng-if="listCtrl.items.length">
+        <ion-list>
+          <ion-item
+            bindonce="listCtrl.items"
+            collection-repeat="item in listCtrl.items"
+            collection-item-width="'100%'"
+            collection-item-height="listCtrl.getItemHeight(item, (item.image || item.image['thumbnail-link-data']))"
+            ng-click="listCtrl.loadCarousel($index)">
+            <div ng-class="{'item-thumbnail-left': item.image || item.image['thumbnail-link-data']}" class="item-article" href="#">
+              <!-- embedded image -->
+              <img ng-if="item.image['thumbnail-link-data']"
+                ng-src="data:image/{{item.image.format}};base64,{{item.image['thumbnail-link-data']}}">
+              <!-- slideshows -->
+              <img ng-if="item.image[1]"
+                ng-src="{{item.image[0]['thumbnail-link'].replace('www.', 'stage.')}}">
+              <!-- image not embedded -->
+              <img ng-if="item.image && !item.image[1] && !item.image['thumbnail-link-data']"
+                ng-src="{{item.image['thumbnail-link'].replace('www.', 'stage.')}}">
+              <h2 class="list-title" ng-show="item.title" ng-bind-html="item.title"></h2>
+              <p class="list-summary" ng-show="item.summary" ng-bind-html="item.summary"></p>
+              <p class="list-byline" ng-bind-html="item.publishedFormat"></p>
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    <div ng-if="!appCtrl.online">
+      <div ng-switch on="appCtrl.$state.current.name">
+        <div ng-switch-when="main.tabs.slideshows">
+          <button class="button button-block button-light button-offline">
+            Slideshows not available in offline mode
+          </button>
+        </div>
+        <div ng-switch-default>
+          <div ng-if="!listCtrl.items.length">
+            <button class="button button-block button-light button-offline">
+              Unable to connect. Please try again later
+            </button>
+          </div>
+          <div ng-if="listCtrl.items.length">
+            <ion-list>
+              <div ng-show="articleCtrl.refreshing || appCtrl.refreshing"
+                animation="slide-up-down"
+                class="item item-divider refresh-text">
+                <i class="fa fa-spin fa-circle-o-notch"></i>
+                <span>Updating...</span>
+              </div>
+              <ion-item
+                bindonce="listCtrl.items"
+                collection-repeat="item in listCtrl.items"
+                collection-item-width="'100%'"
+                collection-item-height="listCtrl.getItemHeight(item, item.image['thumbnail-link-data'])"
+                ng-click="listCtrl.loadCarousel($index)">
+                <div ng-class="{'item-thumbnail-left': item.image['thumbnail-link-data']}" class="item-article" href="#">
+                  <!-- embedded image only when offline -->
+                  <img ng-if="item.image['thumbnail-link-data']"
+                    ng-src="data:image/{{item.image.format}};base64,{{item.image['thumbnail-link-data']}}">
+                  <h2 class="list-title" ng-show="item.title" ng-bind-html="item.title"></h2>
+                  <p class="list-summary" ng-show="item.summary" ng-bind-html="item.summary"></p>
+                  <p class="list-byline" ng-bind-html="item.publishedFormat"></p>
+                </div>
+              </ion-item>
+            </ion-list>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

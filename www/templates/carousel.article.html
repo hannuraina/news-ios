@@ -1,0 +1,45 @@
+<ion-view title="">
+  <ion-nav-bar class="bar bar-header bar-dark">
+  </ion-nav-bar>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear fa fa-bars" ng-click="appCtrl.toggleLeft()"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear fa fa-heart"
+      ng-class="{ active: !articleCtrl.isSaved(carouselCtrl.current) }"
+      ng-click="articleCtrl.toggleSave(carouselCtrl.current)"></button>
+    <button class="button button-icon button-clear fa fa-font"
+      ng-click="appCtrl.toggleFont()"></button>
+    <button class="button button-icon button-clear fa fa-share-alt"
+      ng-click="articleCtrl.share()"></button>
+    <span  class="button button-icon button-clear"></span>
+  </ion-nav-buttons>
+  <ion-slide-box
+    show-pager="false"
+    active-slide="carouselCtrl.active"
+    on-slide-changed="carouselCtrl.slide(index)">
+    <ion-slide class="padding"
+      bindonce="carouselCtrl.items"
+      ng-repeat="item in carouselCtrl.items">
+        <ion-content has-footer="true"
+          overflow-scroll="true"
+          ng-style="appCtrl.Config.config.style"
+          class="padding" >
+          <div class="article article-title" ng-bind-html="item.title"></div>
+          <div class="article article-byline">BY <span ng-click="articleCtrl.emailClick($event, item)" ng-bind-html="item.bylineFormat"></span>
+          </div>
+          <div class="article article-published">{{item.publishedFormat}}</div>
+          <div class="article article-content"
+            ng-class="{'article-offline': !appCtrl.online}"
+            ng-bind-html="item.content.replace('www.pionline', 'stage.pionline')"></div>
+          <div class="article article-ending">-P&I</div>
+          <div>&nbsp;</div>
+        </ion-content>
+    </ion-slide>
+  </ion-slide-box>
+  <ion-footer-bar class="bar-balanced ad ad-wrapper">
+    <div class="ad ad-banner" ng-repeat="ad in appCtrl.Ads.ads | filter:{type:'banner'}">
+      <img ng-src="data:image/{{ad.format}};base64,{{ad.data}}" ng-click="articleCtrl.adClick($event, ad)">
+    </div>
+  </ion-footer-bar>
+</ion-view>

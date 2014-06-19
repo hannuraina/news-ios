@@ -1,0 +1,35 @@
+<ion-view title="About Us">
+  <ion-nav-bar class="bar bar-header bar-dark">
+  </ion-nav-bar>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="appCtrl.toggleLeft()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-show="!appCtrl.online" class="item-divider offline-text">
+      P&I News is currently offline
+    </div>
+    <div class="article padding">
+      <h3 class="padding col">Pensions & Investments News App</h3>
+      <h3 class="padding col">Version {{ appCtrl.version }}</h3>
+      <div class="padding col">
+        The P&amp;I News App delivers timely news and analysis of the events affecting the money management business customized for your Android device.  P&amp;I Daily Subscribers will have real-time access to P&amp;I’s coverage of business and financial news, asset owner search and hire activity, legislative reports, global investments, executive changes, corporate governance and other topics crucial to people who drive the world of professionally managed money.
+      </div>
+
+      <h3 class="padding col">P&amp;I Daily</h3>
+      <div class="padding col">
+        As the industry’s premier daily newsletter, P&amp;I Daily keeps subscribers up-to-date on the fast breaking news affecting the institutional asset management industry.  Every weekday afternoon, P&amp;I Daily is delivered to the largest corporate, union and government pension plans, endowments, foundations, consulting firms and investment management companies.  With a P&amp;I Daily subscription, you have access to the article archives of Pensions &amp; Investments and P&amp;I Daily, and to the interactive P&amp;IQ Searches and Hires Database.
+      </div>
+
+      <h3 class="padding col">Pensions &amp; Investments</h3>
+      <div class="padding col">
+        With unmatched integrity and professionalism, Pensions &amp; Investments consistently delivers news, research and analysis to the executives who manage the flow of funds in the institutional investment market.  Since its founding in 1973, this continues to be the mission of Pensions &amp; Investments, the international newspaper of money management.
+      </div>
+
+      <div class="padding col">
+        <i>Pensions &amp; Investments</i> is owned by Crain Communications Inc.
+      </div>
+
+      <div class="clear">&nbsp;</div>
+    </div>
+  </ion-content>
+</ion-view>

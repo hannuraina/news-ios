@@ -1,0 +1,61 @@
+<ion-view title="Search">
+  <ion-nav-bar class="bar bar-header bar-dark">
+    <ion-nav-back-button class="button-icon button-clear ion-arrow-left-a"></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="appCtrl.toggleLeft()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-show="!appCtrl.online" class="item-divider offline-text">
+       P&I News is currently offline
+    </div>
+    <div class="padding">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text"
+          ng-model="searchCtrl.Search.query"
+          ng-change="searchCtrl.searchOffline(searchCtrl.Search.query)"
+          placeholder="Search topics, companies or people...">
+      </label>
+      <label ng-show="searchCtrl.Search.offlineResults
+        && !searchCtrl.Search.onlineResults.length
+        && searchCtrl.Search.query.length
+        && appCtrl.online" class="item padding">
+        <div class="button-bar">
+          <a class="button button-positive" ng-click="searchCtrl.searchOnline(searchCtrl.Search.query)">
+            Continue Search on Server
+            <span ng-if="searchCtrl.searching">
+              <i id="loading-icon" class="fa fa-spin fa-circle-o-notch"></i>
+            </span>
+          </a>
+        </div>
+      </label>
+      <ion-list ng-show="searchCtrl.Search.onlineResults" >
+        <div class="item item-divider">Online</div>
+        <ion-item ng-repeat="item in searchCtrl.Search.onlineResults"
+          ng-click="searchCtrl.searchVisit(item)">
+          <div ng-class="{'item-thumbnail-left': item.thumb}" class="item-article" >
+            <img ng-if="item.thumb" ng-src="{{item.thumb.replace('www.', 'stage.')}}">
+            <h2 ng-show="item.title" ng-bind-html="item.title"></h2>
+            <p ng-show="item.summary" ng-bind-html="item.summary"></p>
+            <h4 ng-show="item.publishedFormat" ng-bind-html="item.publishedFormat"></h4>
+          </div>
+        </ion-item>
+      </ion-list>
+      <ion-list ng-show="searchCtrl.Search.offlineResults">
+        <div class="item item-divider">On Device</div>
+        <ion-item
+          ng-repeat="item in searchCtrl.Search.offlineResults"
+          ng-click="searchCtrl.loadCarousel($index)">
+          <div ng-class="{'item-thumbnail-left': appCtrl.online && item.image || item.image['thumbnail-link-data']}" class="item-article" href="#">
+            <img ng-if="appCtrl.online && item.image && !item.image[1] && !item.image['thumbnail-link-data']"
+              ng-src="{{item.image['thumbnail-link'].replace('www.', 'stage.')}}">
+            <h2 ng-show="item.title" ng-bind-html="item.title"></h2>
+            <p ng-show="item.summary" ng-bind-html="item.summary"></p>
+            <h4 ng-show="item.publishedFormat" ng-bind-html="item.publishedFormat"></h4>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
