@@ -266,18 +266,17 @@ var SettingsController = function($scope, $log, $state, UserService, ModalServic
   this.Modal            = ModalService;
   this.Form             = FormService;
   this.Track            = TrackService;
-  this.contactFormName  = this.User.user ? [this.User.user.nameFirst, this.User.user.nameLast].join(' ') : '';
-  this.contactFormEmail = this.User.user ? this.User.user.email : '';
 
   if (this.$state.current.name === 'main.tabs.settings') this.Track.page('Settings');
   this.$log.debug('settings controller loaded!');
 };
 SettingsController.prototype.submitContactForm = function() {
   var _this   = this,
-      promise = _this.Form.submitContactForm(this.contactFormName,
+      promise = _this.Form.submitContactForm(this.User.user.contactFormName,
                   this.contactFormCompany,
-                  this.contactFormEmail,
+                  this.User.user.contactFormEmail,
                   this.contactFormMessage);
+
 
   _this.submitting = true;
   promise.then(function() {

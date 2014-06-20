@@ -278,6 +278,8 @@ UserService.prototype.authenticate = function(username, password) {
     } else {
       _this.error = null;
       _this.user = data;
+      _this.user.contactFormName = [data.nameFirst, data.nameLast].join(' ');
+      _this.user.contactFormEmail = data.email;
       _this.$storage.user = angular.toJson(_this.user);
     }
     defer.resolve();
