@@ -6,7 +6,7 @@
   <ion-content>
     <div ng-if="appCtrl.online && appCtrl.$state.current.name === 'main.tabs.latest'">
       <ion-refresher
-        on-refresh="articleCtrl.refresh()"
+        on-refresh="listCtrl.refresh()"
         pulling-text="Release to refresh..."
         pulling-icon="fa fa-sort-desc"
         refreshing-icon=""
@@ -20,7 +20,7 @@
     </div>
 
     <div ng-if="appCtrl.online">
-      <div ng-show="articleCtrl.refreshing || appCtrl.refreshing"
+      <div ng-show="listCtrl.refreshing || listCtrl.refreshing"
         animation="slide-up-down"
         class="item item-divider refresh-text">
         <i class="fa fa-spin fa-circle-o-notch"></i>
@@ -36,9 +36,7 @@
         <ion-list>
           <ion-item
             bindonce="listCtrl.items"
-            collection-repeat="item in listCtrl.items"
-            collection-item-width="'100%'"
-            collection-item-height="listCtrl.getItemHeight(item, (item.image || item.image['thumbnail-link-data']))"
+            ng-repeat="item in listCtrl.items"
             ng-click="listCtrl.loadCarousel($index)">
             <div ng-class="{'item-thumbnail-left': item.image || item.image['thumbnail-link-data']}" class="item-article" href="#">
               <!-- embedded image -->

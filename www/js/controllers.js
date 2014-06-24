@@ -99,22 +99,6 @@ ArticleController.prototype.isSaved = function(article) {
   if (!_this.Articles.saved) return false;
   return _this.$filter('filter')(_this.Articles.saved, { saxotech_id: article.saxotech_id }).length > 0;
 };
-ArticleController.prototype.refresh = function() {
-  var _this   = this,
-      promise = _this.Articles.fetchLatest();
-
-  // hide ionic refresher and substitute custom loader
-  _this.$scope.$broadcast('scroll.refreshComplete');
-  _this.refreshing = true;
-
-  promise.then(function() {
-    _this.$timeout(function() {
-      _this.refreshing = false;
-    }, 1000);
-  });
-
-  return promise;
-};
 ArticleController.prototype.share = function() {
   var _this  = this,
       title  = _this.Articles.current.title,
@@ -190,11 +174,12 @@ SearchController.$inject = ['$scope', '$log', '$state', '$filter', 'SearchServic
 module.controller('SearchController', SearchController);
 
 
-var ListController = function($scope, $log, $state, ModalService, UserService, ArticleService, TrackService, items, title) {
+var ListController = function($scope, $log, $state, $timeout, ModalService, UserService, ArticleService, TrackService, items, title) {
   var _this     = this;
   this.$scope   = $scope;
   this.$log     = $log;
   this.$state   = $state;
+  this.$timeout = $timeout;
   this.Modal    = ModalService;
   this.User     = UserService;
   this.Track    = TrackService;
@@ -214,12 +199,29 @@ ListController.prototype.loadCarousel = function(index) {
     _this.$state.go('.carousel', { index: index });
   }
 };
+ListController.prototype.refresh = function() {
+  var _this   = this,
+      promise = _this.Articles.fetchLatest();
+
+  // hide ionic refresher and substitute custom loader
+  _this.$scope.$broadcast('scroll.refreshComplete');
+  _this.refreshing = true;
+
+  promise.then(function(result) {
+    _this.$timeout(function() {
+      _this.refreshing = false;
+      _this.items = result.data;
+    }, 1000);
+  });
+
+  return promise;
+};
 ListController.prototype.getItemHeight = function(item, image) {
   // item with thumbnail image: 111px
   // item with no image: 94px
   return image ? 111 : 94;
 };
-ListController.$inject = ['$scope', '$log', '$state', 'ModalService', 'UserService', 'ArticleService', 'TrackService', 'items', 'title'];
+ListController.$inject = ['$scope', '$log', '$state', '$timeout', 'ModalService', 'UserService', 'ArticleService', 'TrackService', 'items', 'title'];
 module.controller('ListController', ListController);
 
 

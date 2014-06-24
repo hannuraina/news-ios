@@ -57,7 +57,7 @@ ArticleService.prototype.fetchLatest = function() {
     data = _this.$filter('orderBy')(data, ['-published', 'priority']);
     _this.latest = data;
     _this.$storage.latest = angular.toJson(data);
-    defer.resolve();
+    defer.resolve({data: _this.latest});
   })
   // keep existing offline dataset
   .error(function(data, status) {
