@@ -1,19 +1,26 @@
 <ion-view title="">
   <ion-nav-bar class="bar bar-header bar-dark">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear" ng-click="appCtrl.toggleLeft()">
+        <i class="fa fa-navicon"></i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-icon"
+        ng-class="{ active: !articleCtrl.isSaved(carouselCtrl.current) }"
+        ng-click="articleCtrl.toggleSave(carouselCtrl.current)">
+        <i class="fa fa-heart"></i>
+      </button>
+      <button class="button button-icon"
+        ng-click="appCtrl.toggleFont()">
+        <i class="fa fa-unsorted"></i>
+      </button>
+      <button class="button button-icon"
+        ng-click="articleCtrl.share()">
+         <i class="fa fa-location-arrow"></i>
+        </button>
+    </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-nav-buttons side="left">
-    <button class="button button-icon button-clear ion-navicon" ng-click="appCtrl.toggleLeft()"></button>
-  </ion-nav-buttons>
-  <ion-nav-buttons side="right">
-    <button class="button button-icon button-clear fa fa-heart"
-      ng-class="{ active: !articleCtrl.isSaved(carouselCtrl.current) }"
-      ng-click="articleCtrl.toggleSave(carouselCtrl.current)"></button>
-    <button class="button button-icon button-clear fa fa-font"
-      ng-click="appCtrl.toggleFont()"></button>
-    <button class="button button-icon button-clear fa fa-share-alt"
-      ng-click="articleCtrl.share()"></button>
-    <span  class="button button-icon button-clear"></span>
-  </ion-nav-buttons>
   <ion-slide-box
     show-pager="false"
     active-slide="carouselCtrl.active"
