@@ -13,7 +13,7 @@
     "grunt-contrib-watch": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-copy": "*",
-    "grunt-angular-templates": "*",
+    "grunt-angular-templates": "~0.5.5",
     "grunt-string-replace": "*",
     "grunt-cachebuster": "*",
     "grunt-htmlhint": "*",

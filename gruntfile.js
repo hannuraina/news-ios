@@ -11,10 +11,6 @@ module.exports = function(grunt) {
       res: 'resources',
       versionCode: '4'
     },
-    clean: {
-      build: ['<%= config.build%>/*/*.{js,css}'],
-      partials: ['<%= ngtemplates.build.dest %>']
-    },
     jshint: {
       options: {
         '-W030': false, // W030: Expected an assignment or function call and instead saw an expression.
@@ -35,16 +31,6 @@ module.exports = function(grunt) {
         src: ['<%= config.templates %>/*.html']
       }
     },
-    concat: {
-      build: {
-        src: ['<%= config.src %>/**/*.js', '<%= ngtemplates.build.dest %>'],
-        dest: '<%= config.build %>/app.js'
-      },
-      index: {
-        src: ['<%= config.templates %>/header.html', 'index.html', '<%= config.templates %>/footer.html'],
-        dest: '<%= config.build %>/index.html'
-      }
-    },
     sass: {
       build: {
         options: {
@@ -57,25 +43,6 @@ module.exports = function(grunt) {
           dest: '<%= config.app %>/css',
           ext: '.css'
         }]
-      }
-    },
-    copy: {
-      build: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= config.images %>',
-            src: '*',
-            dest: '<%= config.build %>/images',
-            filter: 'isFile'
-          },
-          {
-            expand: true,
-            cwd: '<%= config.modules %>',
-            src: '**',
-            dest: '<%= config.build %>/js/components'
-          }
-        ]
       }
     },
     shell: {
@@ -119,6 +86,10 @@ module.exports = function(grunt) {
       html: {
         files: ['<%= config.templates %>/*.html'],
         tasks: ['default']
+      },
+      karma: {
+        files: ['<%= config.src %>/js/**/*.js', '<%= config.test %>/**/*.spec.js'],
+        tasks: ['karma:unit:run']
       }
     }
   });
