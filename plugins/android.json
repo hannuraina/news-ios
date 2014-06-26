@@ -63,28 +63,28 @@
     },
     "installed_plugins": {
         "com.danielcwilson.plugins.googleanalytics": {
-            "PACKAGE_NAME": "com.pionline.pi_news"
+            "PACKAGE_NAME": "com.pionline.news"
         },
         "com.ionic.keyboard": {
-            "PACKAGE_NAME": "com.pionline.pi_news"
+            "PACKAGE_NAME": "com.pionline.news"
         },
         "nl.x-services.plugins.socialsharing": {
-            "PACKAGE_NAME": "com.pionline.pi_news"
+            "PACKAGE_NAME": "com.pionline.news"
         },
         "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.pionline.pi_news"
+            "PACKAGE_NAME": "com.pionline.news"
         },
         "org.apache.cordova.inappbrowser": {
-            "PACKAGE_NAME": "com.pionline.pi_news"
+            "PACKAGE_NAME": "com.pionline.news"
         },
         "org.apache.cordova.network-information": {
-            "PACKAGE_NAME": "com.pionline.pi_news"
+            "PACKAGE_NAME": "com.pionline.news"
         },
         "org.apache.cordova.splashscreen": {
-            "PACKAGE_NAME": "com.pionline.pi_news"
+            "PACKAGE_NAME": "com.pionline.news"
         },
         "org.apache.cordova.statusbar": {
-            "PACKAGE_NAME": "com.pionline.pi_news"
+            "PACKAGE_NAME": "com.pionline.news"
         }
     },
     "dependent_plugins": {}

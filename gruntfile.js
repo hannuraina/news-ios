@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       src: 'www/js',
       app: 'www',
       res: 'resources',
-      versionCode: '4'
+      versionCode: '1'
     },
     jshint: {
       options: {
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
           "sed -i 's/android:versionCode=\"1\"/android:versionCode=\"<%= config.versionCode %>\"/g' <%= config.android_bin %>/AndroidManifest.xml",
           'ionic build android',
           'cordova build --release android',
-          'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore pi-news.keystore <%= config.android_bin %>/ant-build/PINews-release-unsigned.apk pi-news -storepass 100265',
+          'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore news.keystore <%= config.android_bin %>/ant-build/PINews-release-unsigned.apk news -storepass 100265',
           'zipalign -v 4 <%= config.android_bin %>/ant-build/PINews-release-unsigned.apk <%= config.build %>/PINews.apk'
         ].join('&&'),
         options: { stdout: true }

@@ -4,7 +4,7 @@
     <button class="button button-icon button-clear ion-navicon" ng-click="appCtrl.toggleLeft()"></button>
   </ion-nav-buttons>
   <ion-content>
-    <div ng-if="appCtrl.online && appCtrl.$state.current.name === 'main.tabs.latest'">
+    <div ng-if="appCtrl.online && listCtrl.items.length && appCtrl.$state.current.name === 'main.tabs.latest'">
       <ion-refresher
         on-refresh="listCtrl.refresh()"
         pulling-text="Release to refresh..."
