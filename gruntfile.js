@@ -65,7 +65,7 @@ module.exports = function(grunt) {
           'ionic build android',
           'cordova build --release android',
           'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore news.keystore <%= config.android_bin %>/ant-build/PINews-release-unsigned.apk news -storepass 100265',
-          'zipalign -v 4 <%= config.android_bin %>/ant-build/PINews-release-unsigned.apk <%= config.build %>/PINews.apk'
+          'zipalign -v 4 <%= config.android_bin %>/ant-build/PINews-release-unsigned.apk <%= config.build %>/pi-news-<%= config.versionCode %>.apk'
         ].join('&&'),
         options: { stdout: true }
       }
