@@ -38,15 +38,12 @@
             bindonce="listCtrl.items"
             ng-repeat="item in listCtrl.items"
             ng-click="listCtrl.loadCarousel($index)">
-            <div ng-class="{'item-thumbnail-left': item.image || item.image['thumbnail-link-data']}" class="item-article" href="#">
-              <!-- embedded image -->
-              <img ng-if="item.image['thumbnail-link-data']"
-                ng-src="data:image/{{item.image.format}};base64,{{item.image['thumbnail-link-data']}}">
+            <div ng-class="{'item-thumbnail-left': item.image}" class="item-article" href="#">
               <!-- slideshows -->
               <img ng-if="item.image[1]"
                 ng-src="{{item.image[0]['thumbnail-link'].replace('www.', 'stage.')}}">
               <!-- image not embedded -->
-              <img ng-if="item.image && !item.image[1] && !item.image['thumbnail-link-data']"
+              <img ng-if="item.image && !item.image[1]"
                 ng-src="{{item.image['thumbnail-link'].replace('www.', 'stage.')}}">
               <h2 class="list-title" ng-show="item.title" ng-bind-html="item.title"></h2>
               <p class="list-summary" ng-show="item.summary" ng-bind-html="item.summary"></p>
@@ -61,6 +58,11 @@
         <div ng-switch-when="main.tabs.slideshows">
           <button class="button button-block button-light button-offline">
             Slideshows not available in offline mode
+          </button>
+        </div>
+        <div ng-switch-when="main.tabs.charts">
+          <button class="button button-block button-light button-offline">
+            Charts not available in offline mode
           </button>
         </div>
         <div ng-switch-default>
@@ -79,14 +81,9 @@
               </div>
               <ion-item
                 bindonce="listCtrl.items"
-                collection-repeat="item in listCtrl.items"
-                collection-item-width="'100%'"
-                collection-item-height="listCtrl.getItemHeight(item, item.image['thumbnail-link-data'])"
+                ng-repeat="item in listCtrl.items"
                 ng-click="listCtrl.loadCarousel($index)">
-                <div ng-class="{'item-thumbnail-left': item.image['thumbnail-link-data']}" class="item-article" href="#">
-                  <!-- embedded image only when offline -->
-                  <img ng-if="item.image['thumbnail-link-data']"
-                    ng-src="data:image/{{item.image.format}};base64,{{item.image['thumbnail-link-data']}}">
+                <div class="item-article" href="#">
                   <h2 class="list-title" ng-show="item.title" ng-bind-html="item.title"></h2>
                   <p class="list-summary" ng-show="item.summary" ng-bind-html="item.summary"></p>
                   <p class="list-byline" ng-bind-html="item.publishedFormat"></p>

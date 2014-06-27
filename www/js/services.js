@@ -453,12 +453,13 @@ FormService.$inject = ['$log', '$http'];
 module.service('FormService', FormService);
 
 
-var AdService = function($log, $http, $filter, $localStorage, $q) {
+var AdService = function($log, $http, $filter, $timeout, $localStorage, $q) {
   var _this           = this;
   this.apiUrl         = ADMINURL;
   this.serviceTimeout = TIMEOUT;
   this.$log           = $log;
   this.$http          = $http;
+  this.$timeout       = $timeout;
   this.$storage       = $localStorage;
   this.$filter        = $filter;
   this.$q             = $q;
@@ -469,30 +470,23 @@ AdService.prototype.fetchAds = function() {
   var _this = this,
       defer = _this.$q.defer();
 
-  _this.$http({
-    method: 'jsonp',
-    url: _this.apiUrl + '/mobile/get_ads',
-    timeout: _this.serviceTimeout,
-    async : true,
-    params: {
-      callback: 'JSON_CALLBACK',
-      platform: 'ios'
-    }
-  })
-  .success(function(data, status) {
-    _this.$log.debug('ads loaded');
+   _this.$timeout(function() {
+    data = [{
+      campaign: "pi-unlimited",
+      email: "mailto:pmargolis@pionline.com",
+      name: "pi-unlimited_banner",
+      subject: "Enterprise License Inquiry from P&I News App",
+      type: "banner"
+    }];
     _this.ads = data;
-    _this.ads = _this.$filter('filter')(_this.ads, { orientation: 'portrait', type: 'banner' });
+    console.log(_this.ads);
     _this.$storage.ads = angular.toJson(_this.ads);
     defer.resolve();
-  })
-  .error(function(data, status) {
-    defer.resolve();
-  });
+  }, 500);
 
   return defer.promise;
 };
-AdService.$inject = ['$log', '$http', '$filter', '$localStorage', '$q'];
+AdService.$inject = ['$log', '$http', '$filter', '$timeout', '$localStorage', '$q'];
 module.service('AdService', AdService);
 
 
