@@ -39,7 +39,9 @@
   </ion-slide-box>
   <ion-footer-bar class="bar-balanced ad ad-wrapper">
     <div class="ad ad-banner" ng-repeat="ad in appCtrl.Ads.ads | filter:{type:'banner'}">
-      <img ng-src="data:image/{{ad.format}};base64,{{ad.data}}" ng-click="articleCtrl.adClick($event, ad)">
+      <div ng-click="articleCtrl.adClick($event, ad)">
+        Get <b>Unlimited</b> users with <b>unlimited</b> access to<br>news and data with P&amp;I enterpise license
+      </div>
     </div>
   </ion-footer-bar>
 </ion-view>
