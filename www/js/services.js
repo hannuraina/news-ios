@@ -474,8 +474,8 @@ AdService.prototype.fetchAds = function() {
     data = [{
       campaign: "pi-unlimited",
       email: "mailto:pmargolis@pionline.com",
-      name: "pi-unlimited_banner",
-      subject: "Enterprise License Inquiry from P&I News App",
+      name: "Enterprise License Inquiry from P&I News Android App",
+      subject: "Enterprise License Inquiry from P&I News Android App",
       type: "banner"
     }];
     _this.ads = data;

@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       src: 'www/js',
       app: 'www',
       res: 'resources',
-      versionCode: '1'
+      versionCode: '3'
     },
     jshint: {
       options: {
