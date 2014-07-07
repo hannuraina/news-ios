@@ -2,3 +2,5 @@ build
 node_modules
 platforms
 merges
+.sass-cache
+www/lib
