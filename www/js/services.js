@@ -54,7 +54,7 @@ ArticleService.prototype.fetchLatest = function() {
     _this.$log.debug('latest loaded');
     data = data;
     data = _this.$filter('filter')(data, { sectionHeader: 'Latest News'});
-    data = _this.$filter('orderBy')(data, ['-published', 'priority']);
+    data = _this.$filter('orderBy')(data, ['-publishedDate', 'priority']);
     _this.latest = data;
     _this.$storage.latest = angular.toJson(data);
     defer.resolve({data: _this.latest});
@@ -479,7 +479,6 @@ AdService.prototype.fetchAds = function() {
       type: "banner"
     }];
     _this.ads = data;
-    console.log(_this.ads);
     _this.$storage.ads = angular.toJson(_this.ads);
     defer.resolve();
   }, 500);

@@ -1,4 +1,4 @@
-### 1.0.0-beta.8 "fermium-flamingo" (2014-06-16)
+### 1.0.0-beta.8 "einsteinium-emu" (2014-06-16)
 
 
 #### Bug Fixes
@@ -13,7 +13,8 @@
 #### Features
 
 * **ionicons:**
-  * upgrade to v1.5.2 ([17ee672f](https://github.com/driftyco/ionic/commit/17ee672fa3d967bdbd449157951d5fe0441ee66e))
+  * v1.5.2 upgrade w/ :before pseudo ([17ee672f](https://github.com/driftyco/ionic/commit/17ee672fa3d967bdbd449157951d5fe0441ee66e))
+  * upgrade to Ionicons v1.5.1 ([191428a4](https://github.com/driftyco/ionic/commit/191428a49541307a6e54f9bca60b992638460623))
 
 
 <a name="1.0.0-beta.7"></a>
