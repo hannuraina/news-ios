@@ -56,6 +56,7 @@ ArticleService.prototype.fetchLatest = function() {
     data = _this.$filter('filter')(data, { sectionHeader: 'Latest News'});
     data = _this.$filter('orderBy')(data, ['-publishedDate', 'priority']);
     _this.latest = data;
+    console.log(data);
     _this.$storage.latest = angular.toJson(data);
     defer.resolve({data: _this.latest});
   })
