@@ -1,6 +1,6 @@
 {
   "name": "ionic",
-  "codename": "hafnium-heron",
+  "codename": "indium-iguana",
   "homepage": "https://github.com/driftyco/ionic",
   "authors": [
     "Max Lynch <max@drifty.com>",
@@ -50,13 +50,14 @@
     "angular": "~1.2.17",
     "angular-animate": "~1.2.17",
     "angular-sanitize": "~1.2.17",
-    "angular-ui-router": "0.2.10"
+    "angular-ui-router": "0.2.10",
+    "collide": "1.0.0-beta.1"
   },
-  "_release": "89999cadb1",
+  "_release": "e00e938040",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "89999cadb17a9a20d65f3699722e390f982a27ce"
+    "commit": "e00e938040dab100a36ce24a8884cc1fbc5ea3db"
   },
   "_source": "git://github.com/driftyco/ionic.git",
   "_target": "master",

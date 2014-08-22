@@ -145,7 +145,7 @@ function($ionicLoadingConfig, $document, $ionicTemplateLoader, $ionicBackdrop, $
               self.element.addClass('visible');
               ionic.requestAnimationFrame(function() {
                 self.isShown && self.element.addClass('active');
-                $document[0].body.classList.add('loading-active');
+                self.isShown && $document[0].body.classList.add('loading-active');
               });
             }
           });

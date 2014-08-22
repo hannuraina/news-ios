@@ -20,6 +20,8 @@ IonicModule
 function($scope, scrollViewOptions, $timeout, $window, $$scrollValueCache, $location, $rootScope, $document, $ionicScrollDelegate) {
 
   var self = this;
+  // for testing
+  this.__timeout = $timeout;
 
   this._scrollViewOptions = scrollViewOptions; //for testing
 
@@ -59,7 +61,7 @@ function($scope, scrollViewOptions, $timeout, $window, $$scrollValueCache, $loca
 
   $scope.$on('$destroy', function() {
     deregisterInstance();
-    scrollView.__removeEventHandlers();
+    scrollView.__cleanup();
     ionic.off('resize', resize, $window);
     $window.removeEventListener('resize', resize);
     backListenDone();
@@ -114,7 +116,9 @@ function($scope, scrollViewOptions, $timeout, $window, $$scrollValueCache, $loca
   };
 
   this.resize = function() {
-    return $timeout(resize);
+    return $timeout(resize).then(function() {
+      $element.triggerHandler('scroll.resize');
+    });
   };
 
   this.scrollTop = function(shouldAnimate) {
@@ -133,6 +137,18 @@ function($scope, scrollViewOptions, $timeout, $window, $$scrollValueCache, $loca
   this.scrollTo = function(left, top, shouldAnimate) {
     this.resize().then(function() {
       scrollView.scrollTo(left, top, !!shouldAnimate);
+    });
+  };
+
+  this.zoomTo = function(zoom, shouldAnimate, originLeft, originTop) {
+    this.resize().then(function() {
+      scrollView.zoomTo(zoom, !!shouldAnimate, originLeft, originTop);
+    });
+  };
+
+  this.zoomBy = function(zoom, shouldAnimate, originLeft, originTop) {
+    this.resize().then(function() {
+      scrollView.zoomBy(zoom, !!shouldAnimate, originLeft, originTop);
     });
   };
 
@@ -188,14 +204,26 @@ function($scope, scrollViewOptions, $timeout, $window, $$scrollValueCache, $loca
     var refresher = this.refresher = refresherElement;
     var refresherHeight = self.refresher.clientHeight || 0;
     scrollView.activatePullToRefresh(refresherHeight, function() {
+      // activateCallback
       refresher.classList.add('active');
       refresherScope.$onPulling();
     }, function() {
-      refresher.classList.remove('refreshing');
-      refresher.classList.remove('active');
+      // deactivateCallback
+      $timeout(function(){
+        refresher.classList.remove('active');
+        refresher.classList.remove('refreshing');
+        refresher.classList.add('invisible');
+      },300);
     }, function() {
+      // startCallback
       refresher.classList.add('refreshing');
       refresherScope.$onRefresh();
+    },function(){
+      // showCallback
+      refresher.classList.remove('invisible');
+    },function(){
+      // hideCallback
+      refresher.classList.add('invisible');
     });
   };
 }]);

@@ -86,10 +86,6 @@ module.exports = function(grunt) {
       html: {
         files: ['<%= config.templates %>/*.html'],
         tasks: ['default']
-      },
-      karma: {
-        files: ['<%= config.src %>/js/**/*.js', '<%= config.test %>/**/*.spec.js'],
-        tasks: ['karma:unit:run']
       }
     }
   });
